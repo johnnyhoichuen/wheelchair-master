@@ -62,23 +62,24 @@ void setup()
   recallMemory(SLAVE_ADDR);
   exitMode(SLAVE_ADDR);
 
-  // read register
-  for (int i = 0; i < (int)sizeof(readAddr - 1); i++)
-  {
-    readRegister(SLAVE_ADDR, readAddr[i]);
-    exitMode(SLAVE_ADDR);
-  }
-  Serial.println("read register command issued");
+  // // read register
+  // for (int i = 0; i < (int)sizeof(readAddr - 1); i++)
+  // {
+  //   readRegister(SLAVE_ADDR, readAddr[i]);
+  //   exitMode(SLAVE_ADDR);
+  // }
+  // Serial.println("read register command issued");
 
-  // some operations and 2 delays (500/600ms)
+  // // some operations and 2 delays (500/600ms)
 
-  // write register
-  for (int i = 0; i < (int)sizeof(writeInfo - 1); i++)
-  {
-    writeRegister(SLAVE_ADDR, writeInfo[i][0], writeInfo[i][1], writeInfo[i][2]);
-    exitMode(SLAVE_ADDR);
-  }
-  Serial.println("write register command issued");
+  // // write register
+  // for (int i = 0; i < (int)sizeof(writeInfo - 1); i++)
+  // {
+
+  //   writeRegister(SLAVE_ADDR, writeInfo[i][0], writeInfo[i][1], writeInfo[i][2]);
+  //   exitMode(SLAVE_ADDR);
+  // }
+  // Serial.println("write register command issued");
 
   Serial.println("Setup completed");
 }
@@ -88,14 +89,18 @@ void loop()
   // read measurement and print out
   Serial.println("reading data");
 
-  // visual clue to check if the loop is running
+  // read data
+  
 
-  // turn the LED on (HIGH is the voltage level)
+  // visual clue to check if the loop is running
   digitalWrite(LED_BUILTIN, HIGH);
   delay(100);
-  // turn the LED off by making the voltage LOW
   digitalWrite(LED_BUILTIN, LOW);
   delay(100);
+}
+
+void readData() {
+
 }
 
 // /***
