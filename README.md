@@ -1,28 +1,35 @@
 # wheelchair-test-master
 
-#### Background: I'm working on a university research project that targets at building an autonomous wheelchair. The current stage aims at reverse engineering a part of the wheelchair controller so to skip all the circuit designs, etc.
+## Background: 
+I'm working on a university research project that targets at building an autonomous wheelchair. The current stage aims at reverse engineering a part of the wheelchair controller so to skip all the circuit designs, etc.
 
-#### Original System: The original wheelchair controller contains a Renesas R7F0C019L2[1] (I2C Master/Controller) and a Melexis MLX90393 Magnetic Position Sensor[2] (Slave/Target). The position sensor will send the position of a joystick mounted on the the wheelchair controller, according to periodic requests from the master MCU.
+## Original System: 
+![original system](https://github.com/johnnyhoichuen/wheelchair-master/blob/main/images/Original%20system.jpeg)
 
-#### Target System(not this github project is about): Replace the position sensor by an external MCU (eg. Arduino) so I can control the wheelchair through other means (eg. control by phone through bluetooth, or other positioning algorithm with the aid of sensors like LIDAR), without controlling the joystick manually.
+The original wheelchair controller contains a Renesas R7F0C019L2[1] (I2C Master/Controller) and a Melexis MLX90393 Magnetic Position Sensor[2] (Slave/Target). The position sensor will send the position of a joystick mounted on the the wheelchair controller, according to periodic requests from the master MCU.
 
-#### Test System: As the master MCU cannot be programmed or controlled directly, I need to build a system to verify the response from the slave MCU is correct.
+## Target System(not this github project is about): 
+![target system](https://github.com/johnnyhoichuen/wheelchair-master/blob/main/images/Target%20system.jpeg)
 
-#### [Data collected from both Orginal system and Test system](https://docs.google.com/spreadsheets/d/14Tjfw3A1X9E1SeXIhwHKWUtzOc3ze9VOgDJX1UsS4KU/edit?usp=sharing)
+Replace the position sensor by an external MCU (eg. Arduino) so I can control the wheelchair through other means (eg. control by phone through bluetooth, or other positioning algorithm with the aid of sensors like LIDAR), without controlling the joystick manually.
 
-[original system]
+## Test System(this project): 
+![test system](https://github.com/johnnyhoichuen/wheelchair-master/blob/main/images/Test%20system.jpeg)
+As the master MCU cannot be programmed or controlled directly, I need to build a system to verify the response from the slave MCU is correct.
 
-[target system image]
+------
+## Data collected from both Orginal system and Test system 
 
-[current system image]
+#### [Link](https://docs.google.com/spreadsheets/d/14Tjfw3A1X9E1SeXIhwHKWUtzOc3ze9VOgDJX1UsS4KU/edit?usp=sharing)
 
-#### Here's the thing I've done:
+------
+### Here's the thing I've done:
 
-1. Record the I2C signals in the original system (Master's requests, slave's responses)
-2. Impletemented the copied signals on the test system
-3. (Not yet finished) Connect the arduino slave with the original MCU
+#### Part 1. Record the I2C signals in the original system (Master's requests, slave's responses)
+#### Part 2. Impletemented the copied signals on the test system
+#### Part 3. (Not yet finished) Connect the arduino slave with the original MCU
 
-### Issues in 3:
+### Issues in part 3:
 
 [image of weird signals]
 
