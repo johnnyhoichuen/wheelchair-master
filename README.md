@@ -1,5 +1,7 @@
 # wheelchair-test-master
 
+### For slave codes: [slave project](https://github.com/johnnyhoichuen/wheelchair-slave)
+
 ## Background: 
 I'm working on a university research project that targets at building an autonomous wheelchair. The current stage aims at reverse engineering a part of the wheelchair controller so to skip all the circuit designs, etc.  
 
