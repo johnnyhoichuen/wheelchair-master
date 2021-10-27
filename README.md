@@ -1,12 +1,12 @@
 # wheelchair-test-master
 
 ## Background: 
-I'm working on a university research project that targets at building an autonomous wheelchair. The current stage aims at reverse engineering a part of the wheelchair controller so to skip all the circuit designs, etc.
+I'm working on a university research project that targets at building an autonomous wheelchair. The current stage aims at reverse engineering a part of the wheelchair controller so to skip all the circuit designs, etc.  
 
 ## Original System: 
 ![original system](https://github.com/johnnyhoichuen/wheelchair-master/blob/main/images/Original%20system.jpeg)
 
-The original wheelchair controller contains a Renesas R7F0C019L2[1] (I2C Master/Controller) and a Melexis MLX90393 Magnetic Position Sensor[2] (Slave/Target). The position sensor will send the position of a joystick mounted on the the wheelchair controller, according to periodic requests from the master MCU.
+The original wheelchair controller contains a Renesas R7F0C019L2[1] (I2C Master/Controller) and a Melexis MLX90393 Magnetic Position Sensor[2] (Slave/Target). The position sensor will send the position of a joystick mounted on the the wheelchair controller, according to periodic requests from the master MCU. However, as the wheelchair is bought from some vendor, I am **not able to change anything on the master MCU**.
 
 ## Target System(not this github project is about): 
 ![target system](https://github.com/johnnyhoichuen/wheelchair-master/blob/main/images/Target%20system.jpeg)
