@@ -1,6 +1,6 @@
 # wheelchair-test-master
 
-### For slave codes: [slave project](https://github.com/johnnyhoichuen/wheelchair-slave)
+### For slave project codes: [Slave project](https://github.com/johnnyhoichuen/wheelchair-slave)
 
 ## Background: 
 I'm working on a university research project that targets at building an autonomous wheelchair. The current stage aims at reverse engineering a part of the wheelchair controller so to skip all the circuit designs, etc.  
@@ -29,8 +29,8 @@ As the master MCU cannot be programmed or controlled directly, I need to build a
 ------
 ### Here's the thing I've done:
 
-#### Part 1. Record the I2C signals in the original system (Master's requests, slave's responses)
-#### Part 2. Impletemented the copied signals on the test system
+#### Part 1. (Done) Record the I2C signals in the original system (Master's requests, slave's responses)
+#### Part 2. (Done) Impletemented the copied signals on the test system
 #### Part 3. (Not yet finished) Connect the arduino slave with the original MCU
 
 ---
