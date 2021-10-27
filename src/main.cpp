@@ -1,9 +1,3 @@
-/**
- * Blink
- *
- * Turns on an LED on for one second,
- * then off for one second, repeatedly.
- */
 #include "Arduino.h"
 #include "Wire.h"
 #include "WheelchairMaster.h"
@@ -17,9 +11,7 @@
 
 int status = 0x00;
 
-const int dataRow = 3;
-const int dataCol = 2;
-
+volatile byte x = 0;
 // // for Read Register
 // // address, value to be read
 // int data[dataRow][dataCol] = {
@@ -41,13 +33,16 @@ int readAddr[11] = {
     0x4C,
     0x50};
 
-// data1, data2, register << 2
-//  * data1 = data[15:8]
-//  * data2 = data[7:0]
+// // data1, data2, register << 2
+// //  * data1 = data[15:8]
+// //  * data2 = data[7:0]
 int writeInfo[3][3] = {
     {0x80, 0x5C, 0x00},
     {0xE1, 0x80, 0x04},
     {0x01, 0xE5, 0x08}};
+
+void masterInit();
+void printResponse();
 
 void setup()
 {
@@ -58,49 +53,71 @@ void setup()
   Wire.begin(); // start as master
   Serial.begin(115200);
 
-  // recall memory
-  recallMemory(SLAVE_ADDR);
-  exitMode(SLAVE_ADDR);
-
-  // // read register
-  // for (int i = 0; i < (int)sizeof(readAddr - 1); i++)
-  // {
-  //   readRegister(SLAVE_ADDR, readAddr[i]);
-  //   exitMode(SLAVE_ADDR);
-  // }
-  // Serial.println("read register command issued");
-
-  // // some operations and 2 delays (500/600ms)
-
-  // // write register
-  // for (int i = 0; i < (int)sizeof(writeInfo - 1); i++)
-  // {
-
-  //   writeRegister(SLAVE_ADDR, writeInfo[i][0], writeInfo[i][1], writeInfo[i][2]);
-  //   exitMode(SLAVE_ADDR);
-  // }
-  // Serial.println("write register command issued");
+  // wheelchair init sequence
+  masterInit();
 
   Serial.println("Setup completed");
 }
 
 void loop()
 {
-  // read measurement and print out
+  // read measurement and print ou
   Serial.println("reading data");
 
   // read data
-  
+  startSingleMeasurementMode(SLAVE_ADDR, 0x06);
+  // printResponse();
+  readMeasurement(SLAVE_ADDR, 0x06);
+  // printResponse();
 
   // visual clue to check if the loop is running
   digitalWrite(LED_BUILTIN, HIGH);
-  delay(100);
+  delay(1000);
   digitalWrite(LED_BUILTIN, LOW);
-  delay(100);
+  delay(1000);
 }
 
-void readData() {
+void masterInit()
+{
+  recallMemory(SLAVE_ADDR);
+  // printResponse();
 
+  exitMode(SLAVE_ADDR);
+  // printResponse();
+
+  // RR
+  for (size_t i = 0; i < sizeof(readAddr) / sizeof(readAddr[0]); i++)
+  {
+    readRegister(SLAVE_ADDR, readAddr[i]);
+    // printResponse();
+
+    exitMode(SLAVE_ADDR);
+    // printResponse();
+  }
+
+  // reset
+  // weird commands x2
+
+  // WR
+  for (size_t i = 0; i < sizeof(writeInfo) / sizeof(writeInfo[0]); i++)
+  {
+    writeRegister(SLAVE_ADDR, writeInfo[i][0], writeInfo[i][1], writeInfo[i][2]);
+    // printResponse();
+
+    exitMode(SLAVE_ADDR);
+    // printResponse();
+  }
+}
+
+void printResponse()
+{
+  for (int i = 0; i < Wire.available(); i++)
+  {
+    x = Wire.read();
+    Serial.print("Slave Sent: ");
+    Serial.print(x, HEX);
+    Serial.print("\n");
+  }
 }
 
 // /***

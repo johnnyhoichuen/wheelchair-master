@@ -1,4 +1,4 @@
-// #include "Arduino.h"
+#include "Arduino.h"
 // #include "Wire.h"
 #include "WheelchairMaster.h"
 
@@ -9,22 +9,25 @@ void startSingleMeasurementMode(int address, int axis)
     Wire.beginTransmission(address);
     Wire.write(0x30 + axis);
     Wire.endTransmission();
+
+    Wire.requestFrom(address, 1);
 }
 
 // for now it's XY axis only (TXYZ)
-void readMeasurement(int address, int targetAddr, int axis)
+void readMeasurement(int address, int axis)
 {
     startSingleMeasurementMode(address, axis);
 
     Wire.beginTransmission(address);
     Wire.write(0x40 + axis);
-    Wire.write(targetAddr);
     Wire.endTransmission();
 
-    //   while (Wire.available()) {
-    //     char c = Wire.read();
-    //     Serial.print(c);
-    //   }
+    /*
+    * somehow 5 does not work & has to be 10
+    * >10 -> get FF instead (invalid)
+    */
+    // Wire.requestFrom(address, 10);
+    Wire.requestFrom(address, 5);
 }
 
 void readRegister(int address, int targetAddr)
@@ -34,10 +37,7 @@ void readRegister(int address, int targetAddr)
     Wire.write(targetAddr);
     Wire.endTransmission();
 
-    //   while (Wire.available()) {
-    //     char c = Wire.read();
-    //     Serial.print(c);
-    //   }
+    Wire.requestFrom(address, 3);
 }
 
 // data1 = data[15:8]
@@ -52,10 +52,7 @@ void writeRegister(int address, int data1, int data2, int targetAddr)
     Wire.write(targetAddr);
     Wire.endTransmission();
 
-    //   while (Wire.available()) {
-    //     char c = Wire.read();
-    //     Serial.print(c);
-    //   }
+    Wire.requestFrom(address, 1);
 }
 
 void exitMode(int address)
@@ -64,10 +61,7 @@ void exitMode(int address)
     Wire.write(0x80);
     Wire.endTransmission();
 
-    //   while (Wire.available()) {
-    //     char c = Wire.read();
-    //     Serial.print(c);
-    //   }
+    Wire.requestFrom(address, 1);
 }
 
 void recallMemory(int address)
@@ -75,4 +69,6 @@ void recallMemory(int address)
     Wire.beginTransmission(address);
     Wire.write(0xD0);
     Wire.endTransmission();
+
+    Wire.requestFrom(address, 1);
 }
