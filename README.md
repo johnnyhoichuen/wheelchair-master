@@ -6,7 +6,7 @@ I'm working on a university research project that targets at building an autonom
 ## Original System: 
 ![original system](https://github.com/johnnyhoichuen/wheelchair-master/blob/main/images/Original%20system.jpeg)
 
-The original wheelchair controller contains a Renesas R7F0C019L2 MCU[1] (I2C Master/Controller) and a Melexis MLX90393 Magnetic Position Sensor[2] (Slave/Target). The position sensor will send the position of a joystick mounted on the the wheelchair controller, according to periodic requests from the master MCU. 
+The original wheelchair controller contains a Renesas R7F0C019L2 MCU [[1](http://www.jingbei.com/product-details-pdf.aspx?url=2484)] (I2C Master/Controller) and a Melexis MLX90393 Magnetic Position Sensor [[2](https://www.melexis.com/en/product/MLX90393/Triaxis-Micropower-Magnetometer)] (Slave/Target). The position sensor will send the position of a joystick mounted on the the wheelchair controller, according to periodic requests from the master MCU. 
 
 However, as the wheelchair is bought from some vendor, I am **not able to change anything on the master MCU**.
 
