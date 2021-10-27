@@ -31,14 +31,15 @@ As the master MCU cannot be programmed or controlled directly, I need to build a
 #### Part 2. Impletemented the copied signals on the test system
 #### Part 3. (Not yet finished) Connect the arduino slave with the original MCU
 
+---
+
 ### Issues in part 3:
 
-[image of weird signals]
-
+![image of weird signals](https://github.com/johnnyhoichuen/wheelchair-master/blob/main/images/Weird%20signals.jpeg)
 - Whenever the master requested multiple bytes from the slave when signals will appear. However, when the master requested 1 byte only, it works fine.
 - [Discussion on Arduino forum for this issue](https://forum.arduino.cc/t/i2c-slave-sending-multiple-bytes-failed/918934)
 
 ---
 
-[1]: [Datasheet of R7F0C019L2](http://www.jingbei.com/product-details-pdf.aspx?url=2484)
-[2]: [Datasheet and other info of MLX90393](https://www.melexis.com/en/product/MLX90393/Triaxis-Micropower-Magnetometer)
+#### [1]: [Datasheet of R7F0C019L2](http://www.jingbei.com/product-details-pdf.aspx?url=2484)
+#### [2]: [Datasheet and other info of MLX90393](https://www.melexis.com/en/product/MLX90393/Triaxis-Micropower-Magnetometer)
